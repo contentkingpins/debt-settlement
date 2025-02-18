@@ -18,20 +18,30 @@ const theme = createTheme({
       main: '#4caf50',
       light: '#81c784'
     }
+  },
+  typography: {
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif'
+    ].join(','),
   }
 });
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Box className="App">
+      <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <Header />
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" sx={{ flex: 1, py: 4 }}>
           <Box sx={{ 
             display: 'flex', 
             flexDirection: { xs: 'column', md: 'row' },
-            gap: 4,
-            py: 4
+            gap: 4
           }}>
             <Box sx={{ flex: 1 }}>
               <EligibilityForm />
