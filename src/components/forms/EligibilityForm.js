@@ -58,7 +58,7 @@ const EligibilityForm = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleNext = (formikProps) => {
-    const { validateForm, setTouched, values } = formikProps;
+    const { validateForm, setTouched } = formikProps;
     const currentFields = {
       0: ['firstName', 'lastName', 'email', 'phone'],
       1: ['city', 'state', 'zipCode'],
@@ -89,7 +89,6 @@ const EligibilityForm = () => {
       });
     }, 500);
 
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 3000));
     clearInterval(timer);
     setProgress(100);
@@ -290,7 +289,9 @@ const EligibilityForm = () => {
                           onChange={formikProps.handleChange}
                         />
                         <Typography variant="body2" color="text.secondary">
-                          By submitting this form, I agree to receive phone calls and SMS messages from debt relief specialists about my debt relief options. I understand these calls may be generated using automated technology.
+                          By checking the box below I consent to receive phone sales calls and text messages - Msg and data rates may apply - from our Marketing Partners on the landline or mobile number I provided even if I am on a federal or State do not call registry. I understand these calls may be generated using an autodialer and may contain pre-recorded messages and that consenting is not required to participate in the offers promoted. For SMS message campaigns: Text STOP to stop and HELP for help. Msg & data rates may apply. Periodic messages; max. 30/month.{' '}
+                          <Link href="/privacy" color="primary" underline="hover">Privacy Policy</Link> | {' '}
+                          <Link href="/terms" color="primary" underline="hover">Terms and Conditions</Link>
                         </Typography>
                       </Box>
                       {formikProps.touched.tcpaConsent && formikProps.errors.tcpaConsent && (
