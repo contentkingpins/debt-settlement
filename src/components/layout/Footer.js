@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Container, Typography, Link, Divider } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -12,14 +13,31 @@ const Footer = () => {
               © 2024 Debt Relief Experts. All rights reserved.
             </Typography>
           </Box>
-          <Box sx={{ display: 'flex', gap: 3 }}>
-            <Link href="#" color="text.secondary" underline="hover">
+          <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
+            <Link 
+              component={RouterLink} 
+              to="/privacy" 
+              color="primary" 
+              underline="hover"
+              sx={{ fontWeight: 'bold' }}
+            >
               Privacy Policy
             </Link>
-            <Link href="#" color="text.secondary" underline="hover">
+            <Link 
+              component={RouterLink} 
+              to="/terms" 
+              color="primary" 
+              underline="hover"
+              sx={{ fontWeight: 'bold' }}
+            >
               Terms of Service
             </Link>
-            <Link href="#" color="text.secondary" underline="hover">
+            <Link 
+              href="mailto:contact@debtreliefexperts.com" 
+              color="primary" 
+              underline="hover"
+              sx={{ fontWeight: 'bold' }}
+            >
               Contact Us
             </Link>
           </Box>
