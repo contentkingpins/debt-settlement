@@ -33,7 +33,8 @@ const Footer = () => {
               Terms of Service
             </Link>
             <Link 
-              href="mailto:contact@debtreliefexperts.com" 
+              component={RouterLink}
+              to="/"
               color="primary" 
               underline="hover"
               sx={{ fontWeight: 'bold' }}

@@ -72,11 +72,7 @@ const Terms = () => {
           Contact Information
         </Typography>
         <Typography paragraph>
-          For questions about these Terms and Conditions, please contact us at:
-        </Typography>
-        <Typography>
-          Email: legal@debtreliefexperts.com<br />
-          Phone: 1-800-555-5555
+          If you have any questions about these Terms and Conditions, please fill out our form and an expert will contact you shortly.
         </Typography>
       </Box>
     </Container>

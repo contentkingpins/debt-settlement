@@ -63,11 +63,7 @@ const PrivacyPolicy = () => {
           Contact Us
         </Typography>
         <Typography paragraph>
-          If you have any questions about this Privacy Policy, please contact us at:
-        </Typography>
-        <Typography>
-          Email: privacy@debtreliefexperts.com<br />
-          Phone: 1-800-555-5555
+          If you have any questions about this Privacy Policy, please fill out our form and an expert will contact you shortly.
         </Typography>
       </Box>
     </Container>
