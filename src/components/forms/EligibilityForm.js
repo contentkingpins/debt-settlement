@@ -3,6 +3,7 @@ import { Box, Card, TextField, Button, Typography, MenuItem, Select, FormControl
 import { Phone } from '@mui/icons-material';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { Link as RouterLink } from 'react-router-dom';
 
 const debtOptions = [
   { value: '10k', label: '$10,000 - $19,999' },
@@ -34,9 +35,6 @@ const validationSchema = Yup.object({
   firstName: Yup.string().required('First name is required'),
   lastName: Yup.string().required('Last name is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
-  phone: Yup.string()
-    .matches(/^[0-9]{10}$/, 'Please enter a valid 10-digit phone number')
-    .required('Phone number is required'),
   city: Yup.string().required('City is required'),
   state: Yup.string().required('State is required'),
   zipCode: Yup.string()
@@ -60,7 +58,7 @@ const EligibilityForm = () => {
   const handleNext = (formikProps) => {
     const { validateForm, setTouched } = formikProps;
     const currentFields = {
-      0: ['firstName', 'lastName', 'email', 'phone'],
+      0: ['firstName', 'lastName', 'email'],
       1: ['city', 'state', 'zipCode'],
       2: ['debtAmount', 'creditCards', 'tcpaConsent']
     }[activeStep];
@@ -106,16 +104,6 @@ const EligibilityForm = () => {
         <Typography variant="body1" paragraph>
           One of our debt relief specialists will contact you shortly to discuss your options.
         </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<Phone />}
-          href="tel:1-800-555-5555"
-          size="large"
-          sx={{ mt: 2 }}
-        >
-          Call Now: 1-800-555-5555
-        </Button>
       </Card>
     );
   }
@@ -138,7 +126,6 @@ const EligibilityForm = () => {
             firstName: '',
             lastName: '',
             email: '',
-            phone: '',
             city: '',
             state: '',
             zipCode: '',
@@ -190,14 +177,6 @@ const EligibilityForm = () => {
                       onChange={formikProps.handleChange}
                       error={formikProps.touched.email && Boolean(formikProps.errors.email)}
                       helperText={formikProps.touched.email && formikProps.errors.email}
-                    />
-                    <TextField
-                      name="phone"
-                      label="Phone Number"
-                      value={formikProps.values.phone}
-                      onChange={formikProps.handleChange}
-                      error={formikProps.touched.phone && Boolean(formikProps.errors.phone)}
-                      helperText={formikProps.touched.phone && formikProps.errors.phone}
                     />
                   </Box>
                 )}
@@ -287,12 +266,28 @@ const EligibilityForm = () => {
                           name="tcpaConsent"
                           checked={formikProps.values.tcpaConsent}
                           onChange={formikProps.handleChange}
+                          sx={{ mt: -1 }}
                         />
-                        <Typography variant="body2" color="text.secondary">
-                          By checking the box below I consent to receive phone sales calls and text messages - Msg and data rates may apply - from our Marketing Partners on the landline or mobile number I provided even if I am on a federal or State do not call registry. I understand these calls may be generated using an autodialer and may contain pre-recorded messages and that consenting is not required to participate in the offers promoted. For SMS message campaigns: Text STOP to stop and HELP for help. Msg & data rates may apply. Periodic messages; max. 30/month.{' '}
-                          <Link href="/privacy" color="primary" underline="hover">Privacy Policy</Link> | {' '}
-                          <Link href="/terms" color="primary" underline="hover">Terms and Conditions</Link>
-                        </Typography>
+                        <Box>
+                          <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                            By checking this box, I agree to receive messages from our Marketing Partners, including:
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary" component="ul" sx={{ pl: 2, mb: 1 }}>
+                            <li>Text messages (Msg & data rates may apply)</li>
+                            <li>Up to 30 messages per month</li>
+                            <li>Text STOP to stop or HELP for help</li>
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            By checking this box, I agree to the{' '}
+                            <Link component={RouterLink} to="/terms" color="primary" underline="hover">
+                              Terms and Conditions
+                            </Link>{' '}
+                            and{' '}
+                            <Link component={RouterLink} to="/privacy" color="primary" underline="hover">
+                              Privacy Policy
+                            </Link>
+                          </Typography>
+                        </Box>
                       </Box>
                       {formikProps.touched.tcpaConsent && formikProps.errors.tcpaConsent && (
                         <FormHelperText>{formikProps.errors.tcpaConsent}</FormHelperText>
